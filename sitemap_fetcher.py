@@ -125,15 +125,35 @@ def is_valid_url(url: str) -> bool:
         return False
 
 async def main():
-    # Specify sitemap URL here
-    sitemap_url = "https://docs.conductor-oss.org/sitemap.xml"
-    
-    links = fetch_sitemap_links(sitemap_url)
-    
-    if not links:
-        print("No valid links found in sitemap")
+    if len(sys.argv) < 2:
+        print("Usage: python sitemap_fetcher.py [sitemap_url|file_path|single_url]")
         return
         
+    input_arg = sys.argv[1]
+    
+    links = []
+    
+    if urlparse(input_arg).scheme in ('http', 'https'):
+        # Single URL or Sitemap URL
+        if "sitemap" in input_arg:
+            sitemap_url = input_arg
+            links = fetch_sitemap_links(sitemap_url)
+        else:
+            links.append(input_arg)
+        
+    elif input_arg.endswith('.txt'):
+        with open(input_arg, 'r') as file:
+            urls = file.readlines()
+            links.extend([url.strip() for url in urls if url.strip()])
+    
+    else:
+        print("Invalid argument. Provide a sitemap URL, a text file path, or a single URL.")
+        return
+
+    if not links:
+        print("No valid links found")
+        return
+    
     print(f"Found {len(links)} links")
     await crawl_parallel(links, max_concurrent=3)
 

@@ -27,5 +27,6 @@
 
 2. Run the sitemap fetcher script:
     ```sh
+    # Either specify the URL of a single page to convert, a sitemap.xml link or a txt file with list of links to convert as an argument
     uv run python sitemap_fetcher.py
     ```
