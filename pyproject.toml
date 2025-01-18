@@ -1,0 +1,15 @@
+[project]
+name = "crawler-md"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.11.11",
+    "beautifulsoup4>=4.12.3",
+    "bs4>=0.0.2",
+    "crawl4ai>=0.4.247",
+    "playwright>=1.49.1",
+    "psutil>=6.1.1",
+    "requests>=2.32.3",
+]

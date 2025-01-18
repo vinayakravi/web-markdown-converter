@@ -1,0 +1,19 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env
+
+# Output directory
+sitemap_markdown/
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Ignore the output directory  
+output/
+uv.lock
