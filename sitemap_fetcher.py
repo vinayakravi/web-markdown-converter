@@ -56,7 +56,7 @@ async def crawl_parallel(urls: List[str], max_concurrent: int = 3):
                     try:
                         result = await crawler.arun(url=url, config=crawl_config, session_id=session_id)
                         if result.success:
-                            with open(output_path, 'w') as f:
+                            with open(output_path, 'w', encoding='utf-8') as f:
                                 f.write(result.markdown)
                             return True
                         return False
